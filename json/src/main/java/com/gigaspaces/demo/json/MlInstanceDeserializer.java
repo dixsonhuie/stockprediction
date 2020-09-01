@@ -1,4 +1,4 @@
-package com.gigaspaces.demo.rest.server;
+package com.gigaspaces.demo.json;
 
 
 import com.fasterxml.jackson.core.JsonParser;

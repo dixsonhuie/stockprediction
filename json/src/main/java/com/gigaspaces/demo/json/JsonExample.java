@@ -1,4 +1,4 @@
-package com.gigaspaces.demo.rest.server;
+package com.gigaspaces.demo.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleModule;

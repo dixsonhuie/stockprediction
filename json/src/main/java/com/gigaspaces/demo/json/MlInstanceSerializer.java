@@ -1,4 +1,4 @@
-package com.gigaspaces.demo.rest.server;
+package com.gigaspaces.demo.json;
 
 import org.insightedge.spark.mllib.MLInstance;
 import org.apache.spark.mllib.clustering.KMeansModel;

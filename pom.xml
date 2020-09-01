@@ -26,6 +26,7 @@
         <module>feeder</module>
         <module>restclient</module>
         <module>restserver</module>
+        <module>json</module>
     </modules>
     <dependencies>
        <dependency>
