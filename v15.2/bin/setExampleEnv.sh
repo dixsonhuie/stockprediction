@@ -7,6 +7,8 @@ function get_hostname() {
   echo "$HOSTNAME";
 }
 
+export PROJ_DIR="/home/ubuntu/stockprediction"
+
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 
 export GS_HOME="/home/ubuntu/gigaspaces-insightedge-enterprise-15.2.0"
@@ -28,4 +30,9 @@ export GS_LICENSE="Product=InsightEdge;Version=15.2;Type=ENTERPRISE;Customer=Gig
 
 export GS_GSC_OPTIONS="-Xms1g -Xmx1g -XX:+UseG1GC -Dgs.gc.collectionTimeThresholdWarning=10000"
 
-export GS_OPTIONS_EXT="-Dcom.gs.manager.rest.plugins.path=/home/ubuntu/stockprediction/restserver/target/stockprediction-restserver.jar"
+PLUGGABLE_REST_JAR="$PROJ_DIR/restserver/target/stockprediction-restserver.jar"
+if [ -f "$PLUGGABLE_REST_JAR" ]; then
+  export GS_OPTIONS_EXT="-Dcom.gs.manager.rest.plugins.path=$PLUGGABLE_REST_JAR"
+else
+  echo "PLUGGABLE_REST_JAR not found at $PLUGGABLE_REST_JAR";
+fi

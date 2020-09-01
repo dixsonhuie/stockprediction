@@ -16,7 +16,7 @@ import java.io.ObjectOutputStream;
 
 public class MlInstanceSerializer extends StdSerializer<MLInstance> {
 
-    protected MlInstanceSerializer(Class<MLInstance> t) {
+    public MlInstanceSerializer(Class<MLInstance> t) {
         super(t);
     }
 

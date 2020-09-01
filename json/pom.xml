@@ -43,7 +43,7 @@
             <version>1.1.2</version>
             <type>pom</type>
         </dependency>
-        <!-- used for feeder -->
+        <!-- used for jar dependencies -->
         <dependency>
             <groupId>org.gigaspaces</groupId>
             <artifactId>xap-openspaces</artifactId>
