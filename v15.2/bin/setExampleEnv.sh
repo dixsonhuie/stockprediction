@@ -28,3 +28,4 @@ export GS_LICENSE="Product=InsightEdge;Version=15.2;Type=ENTERPRISE;Customer=Gig
 
 export GS_GSC_OPTIONS="-Xms1g -Xmx1g -XX:+UseG1GC -Dgs.gc.collectionTimeThresholdWarning=10000"
 
+export GS_OPTIONS_EXT="-Dcom.gs.manager.rest.plugins.path=/home/ubuntu/stockprediction/restserver/target/stockprediction-restserver.jar"
