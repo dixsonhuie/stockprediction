@@ -30,9 +30,4 @@ export GS_LICENSE="Product=InsightEdge;Version=15.2;Type=ENTERPRISE;Customer=Gig
 
 export GS_GSC_OPTIONS="-Xms1g -Xmx1g -XX:+UseG1GC -Dgs.gc.collectionTimeThresholdWarning=10000"
 
-PLUGGABLE_REST_JAR="$PROJ_DIR/restserver/target/stockprediction-restserver.jar"
-if [ -f "$PLUGGABLE_REST_JAR" ]; then
-  export GS_OPTIONS_EXT="-Dcom.gs.manager.rest.plugins.path=$PLUGGABLE_REST_JAR"
-else
-  echo "PLUGGABLE_REST_JAR not found at $PLUGGABLE_REST_JAR";
-fi
+export GS_OPTIONS_EXT="-Dcom.gs.get-build=false"

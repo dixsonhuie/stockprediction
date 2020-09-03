@@ -7,26 +7,17 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.gigaspaces.demo.json.MlInstanceSerializer;
 import com.j_spaces.core.client.SQLQuery;
 import org.insightedge.spark.mllib.MLInstance;
-
-import org.openspaces.admin.Admin;
-import org.openspaces.admin.machine.Machine;
-import org.openspaces.admin.rest.CustomManagerResource;
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.GigaSpaceConfigurer;
 import org.openspaces.core.space.SpaceProxyConfigurer;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-
-@CustomManagerResource
-@Path("/demo")
-public class BasicPluggableOperationTest {
-
-    @Context
-    Admin admin;
-
+import javax.ws.rs.core.MediaType;
+@Path("/mlinstance")
+public class TestService {
     GigaSpace gigaSpace;
 
     private void init() {
@@ -35,31 +26,29 @@ public class BasicPluggableOperationTest {
     }
 
     @GET
-    @Path("/mlinstance")
-    public String mlinstance(@QueryParam("id") String id) {
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getTestService(
+        @QueryParam("id") String id) {
+        String json = null;
+        try {
+            if (gigaSpace == null) {
+                init();
+            }
 
-        if( gigaSpace == null ) {
-            init();
+            SQLQuery<MLInstance> query = new SQLQuery<MLInstance>(MLInstance.class, "id = ?");
+            query.setParameter(1, id);
+            MLInstance readItem = gigaSpace.read(query);
+
+            json = toJson(readItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
         }
-
-        SQLQuery<MLInstance> query = new SQLQuery<MLInstance>(MLInstance.class, "id = ?");
-        query.setParameter(1, id);
-        MLInstance readItem = gigaSpace.read(query);
-
-        String json = toJson(readItem);
-
         return json;
-    }
-    @GET
-    @Path("/report")
-    public String report(@QueryParam("hostname") String hostname) {
-        Machine machine = admin.getMachines().getMachineByHostName(hostname);
-        return "Custom report: host=" + hostname +
-                ", containers=" + machine.getGridServiceContainers() +
-                ", PU instances=" + machine.getProcessingUnitInstances();
     }
     private String toJson(MLInstance mlInstance) {
         String json = null;
+
         MlInstanceSerializer serializer = new MlInstanceSerializer(org.insightedge.spark.mllib.MLInstance.class);
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -71,11 +60,19 @@ public class BasicPluggableOperationTest {
 
         try {
             json = objectMapper.writeValueAsString(mlInstance);
+            System.out.println(json);
 
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            return e.getMessage();
+        } catch (Exception e ) {
+            e.printStackTrace();
+            return e.getMessage();
         }
-        System.out.println(json);
+        
         return json;
     }
 }
+
+
+

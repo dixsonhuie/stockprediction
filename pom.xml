@@ -111,6 +111,7 @@
             <!-- Align spring versions for all projects using openspaces -->
             <dependencyManagement>
                 <dependencies>
+
                     <dependency>
                         <groupId>org.gigaspaces</groupId>
                         <artifactId>xap-openspaces</artifactId>
@@ -118,7 +119,8 @@
                         <type>pom</type>
                         <scope>import</scope>
                     </dependency>
-                </dependencies>
+
+            </dependencies>
             </dependencyManagement>
         </profile>
     </profiles>
