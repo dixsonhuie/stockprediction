@@ -26,7 +26,7 @@ public class TestService {
     }
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public String getTestService(
         @QueryParam("id") String id) {
         String json = null;

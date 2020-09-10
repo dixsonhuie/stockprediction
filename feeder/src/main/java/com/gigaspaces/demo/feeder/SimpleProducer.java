@@ -48,9 +48,9 @@ public class SimpleProducer {
         for(String s: lines) {
             producer.send(new ProducerRecord<String, String>(topicName, Integer.toString(i++), s));
 
-            if( i % 4 == 0) {
-                Thread.sleep(20000L);
-            }
+            //if( i % 4 == 0) {
+            //    Thread.sleep(20000L);
+            //}
         }
         producer.close();
 
