@@ -27,9 +27,9 @@ This is stock prediction demo that includes:
 4. Start Kafka. In bin directory, source setKafkaHome.sh, bin/kafka-start.sh
 5. Deploy the space and polling container using bin/deploySpace.sh
 6. Deploy REST server using bin/deployRestService.sh
-7. Write some items to Kafka. Run feeder/target/feeder.sh
+7. Write some items to Kafka. Run feeder/target/classes/feeder.sh
 8. In a browser go to Zeppelin. For example, http://localhost:9090
 Load the notebook in notebooks/stock_prediction_using_technical_indicators.json
 Run each paragraph.
 9. In a browser go to REST service. For example, http://localhost:8091/restserver/rest/mlinstance?id=KMeansModel
-10. Run the REST client with restclient/target/bin/run.sh
+10. Run the REST client with restclient/target/classes/bin/run.sh

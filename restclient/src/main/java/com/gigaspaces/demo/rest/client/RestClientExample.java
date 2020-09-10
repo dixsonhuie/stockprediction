@@ -17,6 +17,9 @@ import java.io.IOException;
 
 public class RestClientExample {
 
+
+
+
     private MLInstance fromJson(String json) {
         MLInstance mlInstanceFromJson = null;
         SimpleModule module =
@@ -34,13 +37,14 @@ public class RestClientExample {
         }
         return mlInstanceFromJson;
     }
+
     private String processResponse(String url, String path) {
         Client client = ClientBuilder.newClient();
 
         Response response = client.target(url)
                 .path(path)
                 .queryParam("id", "KMeansModel")
-                .request(MediaType.APPLICATION_JSON_TYPE)
+                .request(MediaType.APPLICATION_JSON)
                 .get();
 
         String json = response.readEntity(String.class);
@@ -50,12 +54,14 @@ public class RestClientExample {
         return json;
     }
 
+
     private void doPrediction(MLInstance mlInstance) {
         KMeansModel model = (KMeansModel) mlInstance.instance();
         System.out.println("Do prediction...");
         int prediction = model.predict(Vectors.dense(11.5775, 61.5, 14, 73.2, 19.59));
         System.out.println("Prediction is: " + prediction);
     }
+
     public static void main(String[] args) {
         try {
 
