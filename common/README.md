@@ -1,0 +1,1 @@
+This module contains common or model POJO definitions.
