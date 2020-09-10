@@ -50,7 +50,6 @@
                     <groupId>org.eclipse.jetty.aggregate</groupId>
                     <artifactId>jetty-all</artifactId>
                 </exclusion>
-
                 <exclusion>
                     <groupId>org.gigaspaces</groupId>
                     <artifactId>xap-openspaces</artifactId>
